@@ -84,6 +84,24 @@ launch.json
 
 python manage.py migrate
 
+python manage.py runserver
+
 pip install django-cors-headers
+
+.venv\Scripts\Activate.ps1   
+
+-----------------
+
+get current  djanto version
+
+python -m django --version
+
+5.1.5
+
+pip install mssql-django
+pip install pyodbc
+
+python manage.py migrate
+python manage.py runserver
 
 
