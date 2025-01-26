@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'hello'
+    'hello',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "https://apereznwo.github.io",  # Replace with your frontend origin
+    "http://localhost:4200"  # Replace with your frontend origin
 ]
 CORS_ALLOW_METHODS = [
     "GET",

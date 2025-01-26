@@ -104,4 +104,17 @@ pip install pyodbc
 python manage.py migrate
 python manage.py runserver
 
+-------------------------
 
+¿How can I expose a resftul endpotint with json format as a result of a raw ms sql server query using django?
+
+pip install django djangorestframework pyodbc
+
+settings.py
+
+INSTALLED_APPS = [
+    # ... other apps
+    'rest_framework',
+]
+
+-------------------------
