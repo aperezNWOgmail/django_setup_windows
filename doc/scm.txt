@@ -1,9 +1,16 @@
 
 -- [_] https://code.visualstudio.com/docs/python/tutorial-django
 
+
+# Linux
+sudo apt-get install python3-venv    # If needed
+python3 -m venv .venv
+source .venv/bin/activate
+
 # Windows
 py -3 -m venv .venv
 .venv\scripts\activate
+.venv\Scripts\Activate.ps1 
 
 In VS Code, open the Command Palette (View > Command Palette or (Ctrl+Shift+P)). 
 Then select the Python: Select Interpreter command:
@@ -13,8 +20,6 @@ select the virtual environment in your project folder that starts with ./.venv o
 python -m pip install --upgrade pip
 
 python -m pip install django
-
-.venv\Scripts\Activate.ps1 
 
 django-admin startproject web_project .
 
@@ -116,5 +121,23 @@ INSTALLED_APPS = [
     # ... other apps
     'rest_framework',
 ]
+
+source .venv/bin/activate
+
+-------------------------
+
+django.db.utils.Error: ('01000', "[01000] [unixODBC][Driver Manager]Can't open lib 'ODBC Driver 17 for SQL Server' : file not found (0) (SQLDriverConnect)")
+
+# Add Microsoft repository
+curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list > /etc/apt/sources.list.d/mssql-release.list
+
+# Update and install ODBC Driver
+sudo apt-get update
+sudo ACCEPT_EULA=Y apt-get install msodbcsql17
+
+
+ALLOWED_HOSTS = ['vjtyrs-8000.csb.app','localhost', '127.0.0.1']
+
 
 -------------------------
