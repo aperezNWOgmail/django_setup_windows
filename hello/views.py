@@ -26,7 +26,7 @@ class RawDataSerializer(serializers.Serializer):
         return dict(zip(fields, instance))
     
 @api_view(['GET'])
-def raw_sql_endpoint(request):
+def getAllLogs(request):
     try:
         with connection.cursor() as cursor:
             # Your raw SQL query
@@ -62,3 +62,28 @@ def raw_sql_endpoint(request):
             return Response(serializer.data)
     except Exception as e:
         return Response({'error': str(e)}, status=500);
+
+@api_view(['GET'])
+def getAllPersons(request):
+    try:
+        with connection.cursor() as cursor:
+            # Your raw SQL query
+            sql = """
+
+                  SELECT 
+                     [Id_Column]        id_Column
+                    ,[NombreCompleto]   nombreCompleto
+                    ,[ProfesionOficio]  profesionOficio
+                    ,[Ciudad]           ciudad
+                FROM
+                    [dbo].[Persona]
+                ORDER BY 
+                    Id_Column 
+
+                """
+            cursor.execute(sql);
+            rows = cursor.fetchall();
+            serializer = RawDataSerializer(rows, many=True, context={'cursor': cursor}) # Pass cursor for field names
+            return Response(serializer.data)
+    except Exception as e:
+        return Response({'error': str(e)}, status=500);        
