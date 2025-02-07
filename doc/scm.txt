@@ -137,7 +137,20 @@ sudo apt-get update
 sudo ACCEPT_EULA=Y apt-get install msodbcsql17
 
 
-ALLOWED_HOSTS = ['vjtyrs-8000.csb.app','localhost', '127.0.0.1']
+sudo apt-get install python3-venv    # If needed
+python3 -m venv .venv
+source .venv/bin/activate
 
+
+pip install django djangorestframework pyodbc
+pip install mssql-django
+pip install pyodbc
+pip install django-cors-headers
+
+
+ALLOWED_HOSTS = ['n96q4t-8000.csb.app','localhost', '127.0.0.1']
+
+
+python manage.py runserver
 
 -------------------------
