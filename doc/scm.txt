@@ -150,7 +150,9 @@ pip install django-cors-headers
 
 ALLOWED_HOSTS = ['n96q4t-8000.csb.app','localhost', '127.0.0.1']
 
+source .venv/bin/activate
 
 python manage.py runserver
+
 
 -------------------------
