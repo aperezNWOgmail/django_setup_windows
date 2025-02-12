@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-b$1j7b0_*_v9ckp%ha!-*$q=dv2))6ksq^onrdnvb78uedzuxb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['n96q4t-8000.csb.app','localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['n96q4t-8000.csb.app','localhost', '127.0.0.1', 'https://apereznwo.github.io/']
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -50,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'web_project.urls'
