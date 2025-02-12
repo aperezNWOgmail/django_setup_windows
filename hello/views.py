@@ -105,11 +105,11 @@ def getAllContactForms(request):
             sql = """
 
                   SELECT 
-                        id
-                        ,Name
-                        ,Email
-                        ,Message
-                        ,CreatedAt
+                        id         id 
+                        ,Name      name
+                        ,Email     field_1
+                        ,Message   field_2
+                        ,CreatedAt field_3
                 FROM
                     ContactForm
                 ORDER BY 
