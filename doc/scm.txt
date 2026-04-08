@@ -3,7 +3,7 @@
 -----------------------------------------
 
 # 1. Create and activate virtual environment
-sudo apt-get install python3-venv    # Install venv if not available
+# sudo apt-get install python3-venv    # Install venv if not available
 python3 -m venv .venv
 source .venv/bin/activate
 
