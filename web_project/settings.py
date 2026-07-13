@@ -76,7 +76,6 @@ WSGI_APPLICATION = 'web_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
@@ -84,13 +83,17 @@ DATABASES = {
         'USER': 'aperezNWO_SQLLogin_1',
         'PASSWORD': 'aperezNWO_SQLLogin_1',
         'HOST': 'webapiangulardemo.mssql.somee.com',
-        'PORT': '1433'
-    },
-   'OPTIONS': {
+        'PORT': '1433',
+        'OPTIONS': {
+            # Especifica explícitamente el driver 18 aquí
             'driver': 'ODBC Driver 18 for SQL Server',
-            'extra_params': 'TrustServerCertificate=yes;',
+            # Añade las propiedades requeridas por el Driver 18 en entornos en la nube
+            'extra_params': 'driver=ODBC Driver 18 for SQL Server;TrustServerCertificate=yes;',
         },
+    }
 }
+
+
 
 
 # Password validation
