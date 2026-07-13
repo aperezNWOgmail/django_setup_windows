@@ -65,6 +65,7 @@ python manage.py runserver
 5) docker push apereznwogmail/django_setup_windows:latest
 
 # URL FOR RENDER : https://dashboard.render.com/
+# publish is time consuming
 6) docker.io/apereznwogmail/django_setup_windows:latest
 
 --------------------------
