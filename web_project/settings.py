@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-b$1j7b0_*_v9ckp%ha!-*$q=dv2))6ksq^onrdnvb78uedzuxb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sp223k-8000.csb.app', 'localhost', '127.0.0.1','apereznwo.github.io']
+ALLOWED_HOSTS = ['sp223k-8000.csb.app', 'localhost', '127.0.0.1','apereznwo.github.io','django-setup-windows.onrender.com']
 
 # Application definition
 
@@ -138,7 +138,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "https://apereznwo.github.io"  # Replace with your frontend origin
+    "https://apereznwo.github.io",  # Replace with your frontend origin
 ]
 CORS_ALLOW_METHODS = [
     "GET",
