@@ -87,8 +87,13 @@ DATABASES = {
         'PORT': '1433'
     },
     'OPTIONS': {
-        'driver': 'ODBC Driver 17 for SQL Server',
-    },
+                # 1. CAMBIA EL DRIVER AL 18
+                'driver': 'ODBC Driver 18 for SQL Server',
+                
+                # 2. AGREGA ESTA LÍNEA (Es obligatoria en el Driver 18 para entornos en la nube 
+                # como Render, ya que previene errores de certificados SSL autofirmados)
+                'extra_params': 'TrustServerCertificate=yes;', 
+            },
 }
 
 
