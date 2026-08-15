@@ -131,6 +131,7 @@ docker buildx build -t django_setup_windows .
 docker tag django_setup_windows:latest apereznwogmail/django_setup_windows:latest
 
 ## 3. log into docker for publish
+## docker login 
 ## get/create PAT from https://app.docker.com/accounts/apereznwogmail/settings/personal-access-tokens
 ## create with read/write scope
 echo "YOUR_PAT_HERE" | docker login --username apereznwogmail --password-stdin
