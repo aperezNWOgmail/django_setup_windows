@@ -35,7 +35,6 @@ pip install django djangorestframework pyodbc mssql-django django-cors-headers
 # 5. ✅ ADD TENSORFLOW FOR AI MODEL TRAINING
 pip install tensorflow
 
-
 # 6. ✅ static files
 pip install whitenoise
 python manage.py collectstatic
