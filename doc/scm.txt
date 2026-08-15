@@ -88,6 +88,33 @@ python manage.py runserver
 # 6) docker.io/apereznwogmail/django_setup_windows:latest
 6) publish as a docker runtime, not as a docker image.
 
+-------------------------------------------------------
+# TO SAVE DISK SPACE
+-------------------------------------------------------
+
+# This removes all stopped containers, unused networks, and dangling images
+docker system prune -a --volumes -f
+
+# This clears out hidden build caches (crucial for freeing up space)
+docker builder prune -a -f
+
+# ONLY IF VERSION IS STABLE
+# rm -rf .venv/
+
+#
+pip cache purge
+
+# Find and delete every __pycache__ directory recursively from your project
+find . -type d -name "__pycache__" -exec rm -r {} +
+
+#
+sudo apt-get clean
+
+m check disk space
+df -h . && du -h --max-depth=1 | sort -hr
+-------------------------------------------------------
+
+
 --------------------------
 --------------------------
 -- PUBLISH CHANGES
