@@ -98,10 +98,10 @@ python manage.py runserver
 git add * && git commit -m"fractal changes" && git push && git pull 
 
 ## 1. docker build -t my-spring-boot-app .
-docker buildx build -t cs_nodejs_ocr .
+docker buildx build -t django_setup_windows .
 
 ## 2. docker tag my-spring-boot-app yourusername/your-repo:latest
-docker tag cs_nodejs_ocr:latest apereznwogmail/cs_nodejs_ocr:latest
+docker tag django_setup_windows:latest apereznwogmail/django_setup_windows:latest
 
 ## 3. log into docker for publish
 ## get/create PAT from https://app.docker.com/accounts/apereznwogmail/settings/personal-access-tokens
@@ -109,7 +109,7 @@ docker tag cs_nodejs_ocr:latest apereznwogmail/cs_nodejs_ocr:latest
 echo "YOUR_PAT_HERE" | docker login --username apereznwogmail --password-stdin
 
 ## 4. docker push yourusername/your-repo:latest
-docker push apereznwogmail/cs_nodejs_ocr:latest 
+docker push apereznwogmail/django_setup_windows:latest 
 
 --------------------------
 --------------------------
