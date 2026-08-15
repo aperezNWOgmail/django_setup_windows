@@ -11,10 +11,23 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Storage configuration for WhiteNoise
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -25,7 +38,13 @@ SECRET_KEY = 'django-insecure-b$1j7b0_*_v9ckp%ha!-*$q=dv2))6ksq^onrdnvb78uedzuxb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sp223k-8000.csb.app', 'localhost', '127.0.0.1','apereznwo.github.io','django-setup-windows.onrender.com']
+ALLOWED_HOSTS = [  'sp223k-8000.csb.app'
+                 , 'localhost', 
+                   '127.0.0.1',
+                   'apereznwo.github.io'
+                   ,'django-setup-windows.onrender.com'
+                   ,'django-setup-windows-latest-9vkx.onrender.com' 
+                   ]
 
 # Application definition
 
@@ -50,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'hello.middleware.RequestLoggingMiddleware',       
 ]
 
 ROOT_URLCONF = 'web_project.urls'

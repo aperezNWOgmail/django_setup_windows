@@ -1,30 +1,70 @@
+
+from django.http import FileResponse, JsonResponse,  HttpResponse
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.db import connection
+from django.views import View
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import serializers
+from rest_framework import status
+from tensorflow.keras import layers, models
+from typing import Tuple, Dict
+import sys
+import json
+import zipfile
+import shutil
+import tempfile
+import random
+import numpy as np
+import tensorflow as tf
+import json
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Suppress warnings
+
+import logging
+import math # Import math module to check for special values
+
+logger = logging.getLogger(__name__)
+
+#############################################
+# BEGIN GENERAL FUNCIONALITY
+#############################################
 
 def home(request):
     return HttpResponse("Hello, Django!")
 
+@api_view(['GET'])
+def health_check(request):
+    return Response({'status': 'ok'})
 
-def my_view(request):
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT TOP 10 * FROM accessLogs order by ID_COLUMN DESC")
-        rows = cursor.fetchall()
-    
-    # Process rows or pass them to the template context
-    context = {'rows': rows}
-    return render(request, 'my_template.html', context)
+def getPythonVersion(request):
+    current_version = sys.version
+    return HttpResponse(f"{current_version}")
 
-# Define a serializer to handle the raw data.
+@api_view(['GET'])
+def ping(request):
+    return Response(status=204)
+#############################################
+# END GENERAL FUNCIONALITY
+#############################################
+
+
+# #######################################
+# BEGIN DATABASE END POINTS
+# #######################################
+
+
+
 class RawDataSerializer(serializers.Serializer):
     def to_representation(self, instance):
         # Convert row tuple to dictionary
         fields = [field[0] for field in self.context['cursor'].description]
         return dict(zip(fields, instance))
-    
+
+
 @api_view(['GET'])
 def getAllLogs(request):
     try:
@@ -37,7 +77,7 @@ def getAllLogs(request):
                       ,AL.[PageName]   pageName
                       ,AL.[AccessDate] accessDate
                       ,AL.[IpValue]    ipValue
-                 FROM 
+                 FROM
                        [dbo].[accessLogs] AL
                     WHERE
                        AL.[LogType] = 1
@@ -47,21 +87,23 @@ def getAllLogs(request):
                         AL.PAGENAME LIKE '%PAGE%')
                     AND
                         AL.PAGENAME NOT LIKE '%ERROR%'
-                    AND 
+                    AND
                         AL.PAGENAME  NOT LIKE '%PAGE_DEMO_INDEX%'
-                    AND 
+                    AND
                         UPPER(AL.PAGENAME) NOT LIKE '%CACHE%'
                     AND
                         AL.IPVALUE <> '::1'
-                 order by 
+                 order by
                        AL.[ID_column] desc
                   """
-            cursor.execute(sql);
-            rows = cursor.fetchall();
-            serializer = RawDataSerializer(rows, many=True, context={'cursor': cursor}) # Pass cursor for field names
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            serializer = RawDataSerializer(rows, many=True, context={
+                                           'cursor': cursor})   # Pass cursor for field names
             return Response(serializer.data)
     except Exception as e:
-        return Response({'error': str(e)}, status=500);
+        return Response({'error': str(e)}, status=500)
+
 
 @api_view(['GET'])
 def getAllPersons(request):
@@ -70,23 +112,24 @@ def getAllPersons(request):
             # Your raw SQL query
             sql = """
 
-                  SELECT 
+                  SELECT
                      [Id_Column]        id_Column
                     ,[NombreCompleto]   nombreCompleto
                     ,[ProfesionOficio]  profesionOficio
                     ,[Ciudad]           ciudad
                 FROM
                     [dbo].[Persona]
-                ORDER BY 
-                    Id_Column 
+                ORDER BY
+                    Id_Column
 
                 """
-            cursor.execute(sql);
-            rows = cursor.fetchall();
-            serializer = RawDataSerializer(rows, many=True, context={'cursor': cursor}) # Pass cursor for field names
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            serializer = RawDataSerializer(rows, many=True, context={
+                                           'cursor': cursor})  # Pass cursor for field names
             return Response(serializer.data)
     except Exception as e:
-        return Response({'error': str(e)}, status=500);        
+        return Response({'error': str(e)}, status=500)
 
 
 @api_view(['GET'])
@@ -96,15 +139,15 @@ def getAllContactForms(request):
             # Your raw SQL query
             sql = """
 
-                  SELECT 
-                        id         id 
+                  SELECT
+                        id         id
                         ,Name      name
                         ,Email     field_1
                         ,Message   field_2
                         ,CreatedAt field_3
                 FROM
                     ContactForm
-                ORDER BY 
+                ORDER BY
                     id desc
                 """
             cursor.execute(sql)
@@ -113,4 +156,10 @@ def getAllContactForms(request):
                                            'cursor': cursor})  # Pass cursor for field names
             return Response(serializer.data)
     except Exception as e:
-        return Response({'error': str(e)}, status=500)        
+        return Response({'error': str(e)}, status=500)
+
+
+# ##########################
+# END DATABASE END POINTS
+# ##########################
+
