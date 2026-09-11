@@ -43,6 +43,7 @@ ALLOWED_HOSTS = [  'sp223k-8000.csb.app'
                    '127.0.0.1',
                    'apereznwo.github.io'
                    ,'django-setup-windows.onrender.com'
+                   ,'django-setup-windows-latest-ojoj.onrender.com'
                    ,'django-setup-windows-latest-9vkx.onrender.com' 
                    ,'django-setup-windows-latest-e1ed.onrender.com'
                    ,'django-setup-windows-latest-aa3l.onrender.com'
