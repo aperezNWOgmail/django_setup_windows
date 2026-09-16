@@ -114,22 +114,30 @@ df -h . && du -h --max-depth=1 | sort -hr
 --------------------------
 --------------------------
 
+## PATH 1 - NO EXTERNAL AUTH REQUIRED
+git remote add origin https://github.com/aperezNWO/django_setup_windows.git
+git add *
+git push -u origin main
+
+## PATH 2 - EXTERNAL AUTH REQUIRED
+##  Create a new PAT with correct scope
+    Go to https://github.com/settings/tokens/new (make sure you're logged in as aperezNWO)
+    Fill in:
+
+    Note: codespaces-write
+    Expiration: 90 days
+    Scopes: 
+            ✅ repo (the top-level checkbox — this gives full repo access
+            ✅ workflow
+
+
 ## 0. save changes on git.
+
+git add * 
+git commit -m"getPythonWebServerVersion"
+git remote set-url origin https://aperezNWO:<YOUR_PAT_HERE>@github.com/aperezNWO/django_setup_windows.git
+git push --set-upstream origin main
 git add * && git commit -m"codespaces ubuntu changes" && git push && git pull 
-
-## 1. docker build -t my-spring-boot-app .
-docker buildx build -t django_setup_windows .
-
-## 2. docker tag my-spring-boot-app yourusername/your-repo:latest
-docker tag django_setup_windows:latest apereznwogmail/django_setup_windows:latest
-
-## 3. log into docker for publish
-## get/create PAT from https://app.docker.com/accounts/apereznwogmail/settings/personal-access-tokens
-## create with read/write scope
-echo "YOUR_PAT_HERE" | docker login --username apereznwogmail --password-stdin
-
-## 4. docker push yourusername/your-repo:latest
-docker push apereznwogmail/django_setup_windows:latest 
 
 --------------------------
 --------------------------
@@ -140,5 +148,14 @@ docker push apereznwogmail/django_setup_windows:latest
 1) AI GUIDE : https://docs.docker.com/get-started/ --> GORDON
 
 2) GUIDES   : https://docs.docker.com/guides/java/
+
+/////////////////////////////////////////
+// UPDATE GIT CHANGES
+/////////////////////////////////////////
+
+git add * 
+git commit -m"[ANGULAR DEMO] - [ENV_PROD] v[3.8.7]" -m"1) Dart - Dijkstra"
+git remote set-url origin https://aperezNWO:<YOUR_PAT_HERE>@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git
+git push --set-upstream origin main
 
 /////////////////////////////////////////
