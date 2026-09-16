@@ -8,5 +8,6 @@ urlpatterns = [
     path('getAllContactForms', views.getAllContactForms, name='getAllContactForms'),
     path('health/',  views.health_check, name='health_check'),  # Optional
     path('getPythonVersion'   , views.getPythonVersion,   name='getPythonVersion'),
+    path('getPythonWebServerVersion'   , views.getPythonWebServerVersion,   name='getPythonWebServerVersion'),    
     path('ping'               , views.ping,               name='ping'),
 ]
