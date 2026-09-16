@@ -135,9 +135,9 @@ git push -u origin main
 
 git add * 
 git commit -m"getPythonWebServerVersion"
-git remote set-url origin https://aperezNWO:<YOUR_PAT_HERE>@github.com/aperezNWO/django_setup_windows.git
+git remote set-url origin https://aperezNWOGmail:<YOUR_PAT_HERE>@github.com/aperezNWOGmailerezNWO/django_setup_windows.git
 git push --set-upstream origin main
-git add * && git commit -m"codespaces ubuntu changes" && git push && git pull 
+
 
 --------------------------
 --------------------------
