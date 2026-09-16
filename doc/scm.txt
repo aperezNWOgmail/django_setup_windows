@@ -112,6 +112,18 @@ df -h . && du -h --max-depth=1 | sort -hr
 --------------------------
 --------------------------
 
+## REMOTE TESTING
+     https://django-setup-windows-latest-9vkx.onrender.com/getPythonWebServerVersion
+
+## CRONJOBS - https://console.cron-job.org/jobs
+    https://django-setup-windows-latest-9vkx.onrender.com/ping
+
+--------------------------
+--------------------------
+-- PUBLISH  GIT CHANGES
+--------------------------
+--------------------------
+
 ## PATH 1 - NO EXTERNAL AUTH REQUIRED
 git remote add origin https://github.com/aperezNWO/django_setup_windows.git
 git add *
